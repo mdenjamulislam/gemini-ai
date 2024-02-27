@@ -21,13 +21,21 @@ const AiWithText = () => {
     }
 
     // search
-    const handleChangeSearch = (e) => {
-        setSearch(e.target.value);
-        
-    };
-    // submit button
-    const handleClick = () => {
+    // const handleChangeSearch = (e) => {
+    //     setSearch(e.target.value);
+    // };
+    // const handleClick = () => {
+    //     aiRun();
+    // };
+
+    const handlePromptSubmit = (e) => {
+        e.preventDefault();
+
+        const promptText = e.target.prompt.value;
+        setSearch(promptText);
         aiRun();
+
+        promptText("");
     };
 
     return (
@@ -42,11 +50,11 @@ const AiWithText = () => {
                     </div>
                 </div>
                 {/* Prompt Field */}
-                <div className="flex items-center gap-3 absolute bottom-10 left-0 right-0">
-                    <input type="text" placeholder="Type here" onChange={(e) => handleChangeSearch(e)} className="w-full px-7 py-2.5 border border-gray-400 rounded-xl" />
-                    <button onClick={() => handleClick()} className="px-6 py-2.5 bg-slate-700 text-white rounded-xl">
-                        Generate
-                    </button>
+                <div className="absolute bottom-10 left-0 right-0">
+                    <form onSubmit={handlePromptSubmit} className="flex items-center gap-3">
+                        <input type="text" name="prompt" placeholder="Type here" className="w-full px-7 py-2.5 border border-gray-400 rounded-xl focus:bg-transparent outline-none focus:outline-none" />
+                        <button className="px-6 py-2.5 bg-slate-700 text-white rounded-xl">Generate</button>
+                    </form>
                 </div>
             </div>
         </section>
