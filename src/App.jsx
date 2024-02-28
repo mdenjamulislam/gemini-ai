@@ -10,8 +10,8 @@ function App() {
 
     return (
         <>
-            {/* <AiWithText/> */}
-            <AiWithImage/>
+            <AiWithText/>
+            {/* <AiWithImage/> */}
         </>
     );
 }

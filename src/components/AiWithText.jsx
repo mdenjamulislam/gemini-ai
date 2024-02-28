@@ -39,18 +39,18 @@ const AiWithText = () => {
     };
 
     return (
-        <section className="relative">
-            <div className="container mx-auto h-screen relative">
+        <section className="container">
+            <div className="mx-auto h-screen relative">
                 {/* Result */}
-                <div className="w-full ">
+                <div className="w-full h-full">
                     <h2 className="text-xl md:text-2xl font-semibold text-center pt-10 py-5">Google Gemini AI Copy</h2>
-                    <div className="p-5 border border-gray-300 rounded-xl space-y-5">
+                    <div className="p-5 border border-gray-300 rounded-xl space-y-5 overflow-y-auto">
                         <p className="font-medium">AI Response Here</p>
                         {loading == true && aiResponse == "" ? <span className="loading loading-dots loading-lg"></span> : <p className="text-sm md:text-base">{aiResponse}</p>}
                     </div>
                 </div>
                 {/* Prompt Field */}
-                <div className="absolute bottom-10 left-0 right-0">
+                <div className="absolute bottom-5 left-0 right-0 bg-slate-200 p-4 rounded-xl">
                     
                     <form onSubmit={handlePromptSubmit} className="flex items-center gap-3">
                         <input type="text" name="prompt" placeholder="Type here" className="w-full px-7 py-2.5 border border-gray-400 rounded-xl focus:bg-transparent outline-none focus:outline-none" />
