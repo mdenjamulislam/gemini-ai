@@ -4,12 +4,13 @@ import App from './App.jsx'
 import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './layouts/Home.jsx'
+import Root from './layouts/Root.jsx'
 import AiWithText from './components/AiWithText.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <Root/>,
     children: [
       {
         path: '/',
