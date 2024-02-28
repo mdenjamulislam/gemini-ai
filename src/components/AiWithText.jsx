@@ -51,6 +51,7 @@ const AiWithText = () => {
                 </div>
                 {/* Prompt Field */}
                 <div className="absolute bottom-10 left-0 right-0">
+                    
                     <form onSubmit={handlePromptSubmit} className="flex items-center gap-3">
                         <input type="text" name="prompt" placeholder="Type here" className="w-full px-7 py-2.5 border border-gray-400 rounded-xl focus:bg-transparent outline-none focus:outline-none" />
                         <button className="px-6 py-2.5 bg-slate-700 text-white rounded-xl">Generate</button>
