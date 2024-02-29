@@ -20,14 +20,6 @@ const AiWithText = () => {
         setLoading(false);
     }
 
-    // search
-    // const handleChangeSearch = (e) => {
-    //     setSearch(e.target.value);
-    // };
-    // const handleClick = () => {
-    //     aiRun();
-    // };
-
     const handlePromptSubmit = (e) => {
         e.preventDefault();
 
