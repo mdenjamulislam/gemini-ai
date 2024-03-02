@@ -6,9 +6,12 @@ import Home from "./layouts/Home.jsx";
 import Root from "./layouts/Root.jsx";
 import AiWithText from "./components/AiWithText.jsx";
 import Login from "./layouts/Login.jsx";
+import About from "./layouts/About.jsx";
 import Register from "./layouts/Register.jsx";
 import AuthProvider from "./provider/AuthProvider.jsx";
 import PrivateRoute from "./private/PrivateRoute.jsx";
+import Contact from "./layouts/Contact.jsx";
+import Feature from "./layouts/Feature.jsx";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +34,18 @@ const router = createBrowserRouter([
                 path: "/register",
                 element: <Register />,
             },
+            {
+                path: "/about",
+                element: <About/>,
+            },
+            {
+                path: "/contact",
+                element: <Contact/>
+            },
+            {
+                path: "/feature",
+                element: <Feature/>
+            }
         ],
     },
 ]);
