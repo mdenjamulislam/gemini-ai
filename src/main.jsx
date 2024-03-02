@@ -8,6 +8,7 @@ import AiWithText from "./components/AiWithText.jsx";
 import Login from "./layouts/Login.jsx";
 import Register from "./layouts/Register.jsx";
 import AuthProvider from "./provider/AuthProvider.jsx";
+import PrivateRoute from "./private/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/text-ai",
-                element: <AiWithText />,
+                element: <PrivateRoute><AiWithText /></PrivateRoute>,
             },
             {
                 path: "/login",

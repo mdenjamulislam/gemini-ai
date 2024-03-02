@@ -27,8 +27,8 @@ const Register = () => {
         <section className="py-8 md:py-10">
             <div className="container">
                 <div className="grid grid-cols-1 md:grid-cols-2 bg-slate-800 rounded-2xl">
-                    <div className="p-5 md:p-10">
-                        <h2 className="text-xl md:text-3xl font-semibold text-white">Register An Account</h2>
+                    <div className="p-5 md:p-10 space-y-5">
+                        <h2 className="text-xl md:text-3xl font-semibold text-white">Create An Account</h2>
                         <form onSubmit={handleRegister} className="space-y-4 text-white">
                             <div className="space-y-2">
                                 <label htmlFor="name" className="text-sm text-white">
