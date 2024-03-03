@@ -12,6 +12,8 @@ import AuthProvider from "./provider/AuthProvider.jsx";
 import PrivateRoute from "./private/PrivateRoute.jsx";
 import Contact from "./layouts/Contact.jsx";
 import Feature from "./layouts/Feature.jsx";
+import TextFromTextImage from "./components/TextFromTextImage.jsx";
+import ChatWithAi from "./components/ChatWithAi.jsx";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
             {
                 path: "/feature",
                 element: <Feature/>
+            },
+            {
+                path: "/image-ai",
+                element: <TextFromTextImage/>
+            },
+            {
+                path: "/chat-with-ai",
+                element: <ChatWithAi/>
             }
         ],
     },

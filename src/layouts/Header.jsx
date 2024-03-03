@@ -30,8 +30,14 @@ const Header = () => {
                 <NavLink to="/contact">Contact</NavLink>
             </li>
             <li>
-                <NavLink to="/text-ai">Chat with AI</NavLink>
+                <NavLink to="/text-ai">AI Text</NavLink>
             </li>
+            <li>
+                <NavLink to="/chat-with-ai">Chat</NavLink>
+            </li>
+            {/* <li>
+                <NavLink to="/image-ai">Chat with AI Image</NavLink>
+            </li> */}
         </>
     );
     return (
