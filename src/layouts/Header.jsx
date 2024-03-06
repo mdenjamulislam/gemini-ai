@@ -35,9 +35,9 @@ const Header = () => {
             <li>
                 <NavLink to="/chat-with-ai">Chat</NavLink>
             </li>
-            {/* <li>
-                <NavLink to="/image-ai">Chat with AI Image</NavLink>
-            </li> */}
+            <li>
+                <NavLink to="/aiwithimage">Chat with AI Image</NavLink>
+            </li>
         </>
     );
     return (
@@ -90,9 +90,9 @@ const Header = () => {
                                 <NavLink to="/login" className="btn btn-success">
                                     Login
                                 </NavLink>
-                                <NavLink to="/register" className="btn btn-primary">
+                                {/* <NavLink to="/register" className="btn btn-primary">
                                     Sing Up
-                                </NavLink>
+                                </NavLink> */}
                             </div>
                         )}
                     </div>

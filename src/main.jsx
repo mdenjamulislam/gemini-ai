@@ -14,6 +14,7 @@ import Contact from "./layouts/Contact.jsx";
 import Feature from "./layouts/Feature.jsx";
 import TextFromTextImage from "./components/TextFromTextImage.jsx";
 import ChatWithAi from "./components/ChatWithAi.jsx";
+import AiWithImage from "./components/AiWithImage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -49,8 +50,8 @@ const router = createBrowserRouter([
                 element: <Feature/>
             },
             {
-                path: "/image-ai",
-                element: <TextFromTextImage/>
+                path: "/aiwithimage",
+                element: <AiWithImage/>
             },
             {
                 path: "/chat-with-ai",

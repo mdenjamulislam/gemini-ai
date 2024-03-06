@@ -1,87 +1,83 @@
+import React, { useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { useState } from "react";
 import { getBase64 } from "../imagehelper/ImageHelper";
 
-const AiWithImage = () => {
-    const genAI = new GoogleGenerativeAI("AIzaSyD6vHdHfkcWN-NfLZSzCz2jZBBMsU4Xkcg");
+const AiwithImage = () => {
+    const genAI = new GoogleGenerativeAI("AIzaSyDtiBA7Z3cIgjqzSktQUm0zGj3uQBAWuso");
 
     const [image, setImage] = useState("");
-    const [imageInnerData, setImageInnerData] = useState("");
-    const [imagePrompt, setImagePrompt] = useState("");
-    const [aiImageResponse, setAiImageResponse] = useState("");
+    const [imageInineData, setImageInlineData] = useState("");
+    const [aiResponse, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
 
+    /**
+     * Generative AI Call to fetch image insights
+     */
+    async function aiImageRun() {
+        setLoading(true);
+        setResponse("");
+        const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
+        const result = await model.generateContent(["What's in this photo?", imageInineData]);
+        const response = await result.response;
+        const text = response.text();
+        setResponse(text);
+        setLoading(false);
+    }
+
+    const handleClick = () => {
+        aiImageRun();
+    };
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+
+        // getting base64 from file to render in DOM
+        getBase64(file)
+            .then((result) => {
+                setImage(result);
+            })
+            .catch((e) => console.log(e));
+
+        // generating content model for Gemini Google AI
+        fileToGenerativePart(file).then((image) => {
+            setImageInlineData(image);
+        });
+    };
+
+    // Converts a File object to a GoogleGenerativeAI.Part object.
     async function fileToGenerativePart(file) {
         const base64EncodedDataPromise = new Promise((resolve) => {
             const reader = new FileReader();
             reader.onloadend = () => resolve(reader.result.split(",")[1]);
             reader.readAsDataURL(file);
         });
+
         return {
             inlineData: { data: await base64EncodedDataPromise, mimeType: file.type },
         };
     }
 
-    async function aiImageRun() {
-        setLoading(true);
-        setAiImageResponse("");
-        const model = genAI.getGenerativeModel({ model: "models/gemini-pro-vision" });
-        const result = await model.generateContent([imagePrompt, imageInnerData]);
-        const response = await result.response;
-        const text = response.text();
-        setAiImageResponse(text);
-        setLoading(false);
-    }
-
-    const handleFileSubmit = (e) => {
-        e.preventDefault();
-
-        if (!e.target.files || e.target.files.length === 0) {
-            console.error("No file selected");
-            return;
-        }
-
-        const file = e.target.files[0];
-        const imagePrompt = e.target.image_prompt.value;
-
-        getBase64(file)
-            .then((result) => {
-                setImage(result);
-                setImagePrompt(imagePrompt);
-            })
-            .catch((error) => {
-                console.error("Error Message", error.message);
-            });
-        
-        fileToGenerativePart(file)
-            .then((image) => {
-                setImageInnerData(image);
-        })
-
-        aiImageRun();
-    };
-
     return (
-        <section>
-            <div className="container mx-auto">
-                {/* Result */}
-                <div className="w-full ">
-                    <h2 className="text-xl md:text-2xl font-semibold text-center pt-10 py-5">Google Gemini AI Copy</h2>
-                    <div className="p-5 border border-gray-300 rounded-xl space-y-5">
-                        <p className="font-medium">AI Response Here</p>
-                        {loading == true && aiImageResponse == "" ? <span className="loading loading-dots loading-lg"></span> : <p className="text-sm md:text-base">{aiImageResponse}</p>}
-                    </div>
-                </div>
-                <form onSubmit={handleFileSubmit} className="flex items-center gap-3">
-                    <input type="file" name="files" className="file-input file-input-bordered file-input-accent w-full max-w-xs" />
-                    <input type="text" name="image_prompt" placeholder="Write Here" required className="px-4 py-2 border border-gray-300 rounded-xl" />
-                    <button type="submit" className="px-6 py-2.5 bg-slate-700 text-white rounded-xl">
-                        Generate
+        <div className="container">
+            <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                    <input type="file" onChange={(e) => handleImageChange(e)} className="border border-gray-500" />
+                    <button onClick={() => handleClick()} className="px-4 py-2 border border-gray-600 rounded-xl bg-slate-700 hover:drop-shadow-md">
+                        Search
                     </button>
-                </form>
+                </div>
+                <img src={image} className="w-24 h-auto rounded-lg" />
             </div>
-        </section>
+
+            {loading == true && aiResponse == "" ? (
+                <span className="loading loading-ring loading-lg"></span>
+            ) : (
+                <div className="p-8">
+                    <p>{aiResponse}</p>
+                </div>
+            )}
+        </div>
     );
 };
 
-export default AiWithImage;
+export default AiwithImage;
